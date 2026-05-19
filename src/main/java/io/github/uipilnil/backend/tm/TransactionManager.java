@@ -11,6 +11,14 @@ import io.github.uipilnil.backend.utils.Panic;
 import io.github.uipilnil.common.Error;
 
 public interface TransactionManager {
+    long begin();
+    void commit(long xid);
+    void abort(long xid);
+    boolean isActive(long xid);
+    boolean isCommitted(long xid);
+    boolean isAborted(long xid);
+    void close();
+
     /**
      * 创建一个事务管理器，并返回这个管理器对象
      * @param path XID 文件的基础路径
