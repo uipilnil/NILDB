@@ -1,5 +1,8 @@
 package io.github.uipilnil.backend.tm;
 
+import io.github.uipilnil.backend.utils.Panic;
+import io.github.uipilnil.common.Error;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -7,20 +10,24 @@ import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
-import io.github.uipilnil.backend.utils.Panic;
-import io.github.uipilnil.common.Error;
-
 public interface TransactionManager {
     long begin();
+
     void commit(long xid);
+
     void abort(long xid);
+
     boolean isActive(long xid);
+
     boolean isCommitted(long xid);
+
     boolean isAborted(long xid);
+
     void close();
 
     /**
      * 创建一个事务管理器，并返回这个管理器对象
+     *
      * @param path XID 文件的基础路径
      * @return
      */
@@ -37,7 +44,6 @@ public interface TransactionManager {
             Panic.panic(Error.FileCannotRWException);
         }
 
-        // 两个操作文件的工具对象
         RandomAccessFile raf = null;
         FileChannel fc = null;
         try {
@@ -64,6 +70,7 @@ public interface TransactionManager {
 
     /**
      * 打开一个已经创建好的事务管理器
+     *
      * @param path XID 文件的基础路径
      * @return
      */

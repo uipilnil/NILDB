@@ -1,5 +1,8 @@
 package io.github.uipilnil.common;
 
+/**
+ * 异常公共类
+ */
 public class Error {
     // common
     public static final Exception FileExistsException = new RuntimeException("File already exists!");
@@ -8,6 +11,4 @@ public class Error {
 
     // tm
     public static final Exception BadXIDFileException = new RuntimeException("Bad XID file!");
-
-
 }

@@ -11,6 +11,9 @@ import java.nio.channels.FileChannel;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * 事务管理器
+ */
 public class TransactionManagerImpl implements TransactionManager {
     // XID 文件头长度
     static final int LEN_XID_HEADER_LENGTH = 8;
@@ -18,9 +21,9 @@ public class TransactionManagerImpl implements TransactionManager {
     private static final int XID_FIELD_SIZE = 1;
 
     // 事务的三种状态
-    private static final byte FIELD_TRAN_ACTIVE   = 0;
-	private static final byte FIELD_TRAN_COMMITTED = 1;
-	private static final byte FIELD_TRAN_ABORTED  = 2;
+    private static final byte FIELD_TRAN_ACTIVE = 0;
+    private static final byte FIELD_TRAN_COMMITTED = 1;
+    private static final byte FIELD_TRAN_ABORTED = 2;
 
     // 超级事务，永远处于 commited 状态
     public static final long SUPER_XID = 0;
@@ -75,6 +78,7 @@ public class TransactionManagerImpl implements TransactionManager {
 
     /**
      * 根据事务的 XID 计算出它在 XID 文件中的位置
+     *
      * @param xid 事务
      * @return 事务在 XID 文件中的位置
      */
@@ -84,7 +88,8 @@ public class TransactionManagerImpl implements TransactionManager {
 
     /**
      * 把事务 XID 的状态更新为 status
-     * @param xid 事务
+     *
+     * @param xid    事务
      * @param status 事务的新状态
      */
     private void updateXID(long xid, byte status) {
@@ -128,6 +133,7 @@ public class TransactionManagerImpl implements TransactionManager {
 
     /**
      * 开启事务
+     *
      * @return 事务编号 XID
      */
     public long begin() {
@@ -145,6 +151,7 @@ public class TransactionManagerImpl implements TransactionManager {
 
     /**
      * 提交事务
+     *
      * @param xid
      */
     public void commit(long xid) {
@@ -153,6 +160,7 @@ public class TransactionManagerImpl implements TransactionManager {
 
     /**
      * 回滚事务
+     *
      * @param xid
      */
     public void abort(long xid) {
@@ -161,6 +169,7 @@ public class TransactionManagerImpl implements TransactionManager {
 
     /**
      * 判断事务是否为指定状态
+     *
      * @param xid
      * @param status
      * @return
@@ -180,6 +189,7 @@ public class TransactionManagerImpl implements TransactionManager {
 
     /**
      * 判断事务是否活跃
+     *
      * @param xid
      * @return
      */
@@ -190,6 +200,7 @@ public class TransactionManagerImpl implements TransactionManager {
 
     /**
      * 判断事务是否已提交
+     *
      * @param xid
      * @return
      */
@@ -200,6 +211,7 @@ public class TransactionManagerImpl implements TransactionManager {
 
     /**
      * 判断事务是否已回滚作废
+     *
      * @param xid
      * @return
      */

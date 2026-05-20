@@ -1,8 +1,12 @@
 package io.github.uipilnil.backend.utils;
 
+/**
+ * 强制退出工具类
+ */
 public class Panic {
     /**
      * 数据库中遇到无法恢复的错误，直接崩溃
+     *
      * @param err
      */
     public static void panic(Exception err) {
