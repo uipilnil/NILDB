@@ -15,7 +15,7 @@ public interface PageCache {
 
     int newPage(byte[] initData);
 
-    Page getPage(int pgno);
+    Page getPage(int pgno) throws Exception;
 
     void release(Page page);
 
@@ -23,9 +23,9 @@ public interface PageCache {
 
     void truncateByBgno(int maxPgno);
 
-    int getPageNumber();
-
     void flushPage(Page pg);
+
+    int getPageNumber();
 
     /**
      * 新建数据库文件
