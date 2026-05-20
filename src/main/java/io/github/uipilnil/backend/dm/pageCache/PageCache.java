@@ -19,11 +19,11 @@ public interface PageCache {
 
     void release(Page page);
 
-    void close();
-
     void truncateByBgno(int maxPgno);
 
     void flushPage(Page pg);
+
+    void close();
 
     int getPageNumber();
 
@@ -52,7 +52,7 @@ public interface PageCache {
         try {
             // 打开文件，拿到读写权限
             raf = new RandomAccessFile(f, "rw");
-            // 从 raf 里取出一个文件通道，支持随时修改文件任意位置。后续用它记录事务状态
+            // 从 raf 里取出一个文件通道，支持随时修改文件任意位置
             fc = raf.getChannel();
         } catch (FileNotFoundException e) {
             Panic.panic(e);

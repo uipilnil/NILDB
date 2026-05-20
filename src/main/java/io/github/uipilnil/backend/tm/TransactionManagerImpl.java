@@ -136,6 +136,7 @@ public class TransactionManagerImpl implements TransactionManager {
      *
      * @return 事务编号 XID
      */
+    @Override
     public long begin() {
         // 防止多线程下同时开启事务
         counterLock.lock();
@@ -154,6 +155,7 @@ public class TransactionManagerImpl implements TransactionManager {
      *
      * @param xid
      */
+    @Override
     public void commit(long xid) {
         updateXID(xid, FIELD_TRAN_COMMITTED);
     }
@@ -163,6 +165,7 @@ public class TransactionManagerImpl implements TransactionManager {
      *
      * @param xid
      */
+    @Override
     public void abort(long xid) {
         updateXID(xid, FIELD_TRAN_ABORTED);
     }
@@ -193,6 +196,7 @@ public class TransactionManagerImpl implements TransactionManager {
      * @param xid
      * @return
      */
+    @Override
     public boolean isActive(long xid) {
         if (xid == SUPER_XID) return false;
         return checkXID(xid, FIELD_TRAN_ACTIVE);
@@ -204,6 +208,7 @@ public class TransactionManagerImpl implements TransactionManager {
      * @param xid
      * @return
      */
+    @Override
     public boolean isCommitted(long xid) {
         if (xid == SUPER_XID) return true;
         return checkXID(xid, FIELD_TRAN_COMMITTED);
@@ -215,6 +220,7 @@ public class TransactionManagerImpl implements TransactionManager {
      * @param xid
      * @return
      */
+    @Override
     public boolean isAborted(long xid) {
         if (xid == SUPER_XID) return false;
         return checkXID(xid, FIELD_TRAN_ABORTED);
@@ -223,6 +229,7 @@ public class TransactionManagerImpl implements TransactionManager {
     /**
      * 关闭事务管理器
      */
+    @Override
     public void close() {
         try {
             fc.close();

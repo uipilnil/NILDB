@@ -26,10 +26,12 @@ public class PageImpl implements Page {
     /**
      * 加锁保证并发安全
      */
+    @Override
     public void lock() {
         lock.lock();
     }
 
+    @Override
     public void unlock() {
         lock.unlock();
     }
@@ -37,6 +39,7 @@ public class PageImpl implements Page {
     /**
      * 把页还给缓存池，释放资源
      */
+    @Override
     public void release() {
         pc.release(this);
     }
@@ -46,18 +49,22 @@ public class PageImpl implements Page {
      *
      * @param dirty
      */
+    @Override
     public void setDirty(boolean dirty) {
         this.dirty = dirty;
     }
 
+    @Override
     public boolean isDirty() {
         return dirty;
     }
 
+    @Override
     public int getPageNumber() {
         return pageNumber;
     }
 
+    @Override
     public byte[] getData() {
         return data;
     }

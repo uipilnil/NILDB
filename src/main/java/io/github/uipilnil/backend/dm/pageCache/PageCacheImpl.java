@@ -77,25 +77,12 @@ public class PageCacheImpl extends AbstractCache<Page> implements PageCache {
     }
 
     /**
-     * 关闭缓存，写回所有脏页
-     */
-    @Override
-    public void close() {
-        super.close(); // 父类遍历并清空缓存，把所有脏页刷盘
-        try {
-            fc.close();
-            file.close();
-        } catch (IOException e) {
-            Panic.panic(e);
-        }
-    }
-
-    /**
      * 新建页
      *
      * @param initData
      * @return
      */
+    @Override
     public int newPage(byte[] initData) {
         int pgno = pageNumbers.incrementAndGet();
         Page pg = new PageImpl(pgno, initData, null);
@@ -109,6 +96,7 @@ public class PageCacheImpl extends AbstractCache<Page> implements PageCache {
      * @param pgno
      * @return
      */
+    @Override
     public Page getPage(int pgno) throws Exception {
         return get((long) pgno);
     }
@@ -118,6 +106,7 @@ public class PageCacheImpl extends AbstractCache<Page> implements PageCache {
      *
      * @param page
      */
+    @Override
     public void release(Page page) {
         release((long) page.getPageNumber());
     }
@@ -127,6 +116,7 @@ public class PageCacheImpl extends AbstractCache<Page> implements PageCache {
      *
      * @param maxPgno
      */
+    @Override
     public void truncateByBgno(int maxPgno) {
         long size = pageOffset(maxPgno + 1);
         try {
@@ -142,6 +132,7 @@ public class PageCacheImpl extends AbstractCache<Page> implements PageCache {
      *
      * @param pg
      */
+    @Override
     public void flushPage(Page pg) {
         flush(pg);
     }
@@ -164,10 +155,25 @@ public class PageCacheImpl extends AbstractCache<Page> implements PageCache {
     }
 
     /**
+     * 关闭缓存，写回所有脏页
+     */
+    @Override
+    public void close() {
+        super.close(); // 父类遍历并清空缓存，把所有脏页刷盘
+        try {
+            fc.close();
+            file.close();
+        } catch (IOException e) {
+            Panic.panic(e);
+        }
+    }
+
+    /**
      * 获取总页数
      *
      * @return
      */
+    @Override
     public int getPageNumber() {
         return pageNumbers.intValue();
     }
