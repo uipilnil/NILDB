@@ -8,7 +8,7 @@ import java.util.Arrays;
 /**
  * 普通页管理器
  * 普通页结构：[FreeSpaceOffset] [Data]
- * FreeSpaceOffset：空闲空间的起始位置，用 2 字节存储
+ * FreeSpaceOffset：空闲空间的起始位置，2 字节
  */
 public class PageX {
     private static final short OF_FREE = 0;
