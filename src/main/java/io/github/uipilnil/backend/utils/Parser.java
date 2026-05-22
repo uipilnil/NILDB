@@ -11,6 +11,11 @@ public class Parser {
         return buffer.getShort();
     }
 
+    public static int parseInt(byte[] buf) {
+        ByteBuffer buffer = ByteBuffer.wrap(buf, 0, 4);
+        return buffer.getInt();
+    }
+
     public static long parseLong(byte[] buf) {
         ByteBuffer buffer = ByteBuffer.wrap(buf, 0, 8);
         return buffer.getLong();
@@ -18,6 +23,10 @@ public class Parser {
 
     public static byte[] shortToByte(short value) {
         return ByteBuffer.allocate(Short.SIZE / Byte.SIZE).putShort(value).array();
+    }
+
+    public static byte[] intToByte(int value) {
+        return ByteBuffer.allocate(Integer.SIZE / Byte.SIZE).putInt(value).array();
     }
 
     public static byte[] longToByte(long value) {
