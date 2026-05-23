@@ -7,6 +7,8 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * 数据页
+ * 一个数据页中有多个数据项：
+ * [start1 数据项1 end1] [start2 数据项2 end2] [start3 数据项3 end3] ...
  */
 public class PageImpl implements Page {
     private int pageNumber;
