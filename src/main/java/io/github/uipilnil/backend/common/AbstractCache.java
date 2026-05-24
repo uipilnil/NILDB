@@ -145,7 +145,7 @@ public abstract class AbstractCache<T> {
      * @param key
      * @return
      */
-    protected abstract T getForCache(long key);
+    protected abstract T getForCache(long key) throws Exception;
 
     /**
      * 资源移除缓存前，先写回磁盘
