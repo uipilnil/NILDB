@@ -1,6 +1,7 @@
 package io.github.uipilnil.backend.dm;
 
 import com.google.common.primitives.Bytes;
+import io.github.uipilnil.backend.common.SubArray;
 import io.github.uipilnil.backend.dm.dataItem.DataItem;
 import io.github.uipilnil.backend.dm.logger.Logger;
 import io.github.uipilnil.backend.dm.page.Page;
@@ -201,6 +202,7 @@ public class Recover {
 
     /**
      * 生成插入日志，把信息打包成字节数组
+     *
      * @param xid
      * @param pg
      * @param raw
@@ -255,6 +257,23 @@ public class Recover {
         } finally {
             pg.release();
         }
+    }
+
+    /**
+     * 生成更新日志，把信息打包成字节数组
+     *
+     * @param xid
+     * @param di
+     * @return
+     */
+    public static byte[] updateLog(long xid, DataItem di) {
+        byte[] logType = {LOG_TYPE_UPDATE};
+        byte[] xidRaw = Parser.longToByte(xid);
+        byte[] uidRaw = Parser.longToByte(di.getUid());
+        byte[] oldRaw = di.getOldRaw();
+        SubArray raw = di.getRaw();
+        byte[] newRaw = Arrays.copyOfRange(raw.raw, raw.start, raw.end);
+        return Bytes.concat(logType, xidRaw, uidRaw, oldRaw, newRaw);
     }
 
     /**
