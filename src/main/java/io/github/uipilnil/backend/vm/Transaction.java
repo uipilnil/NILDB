@@ -11,9 +11,8 @@ import java.util.Map;
 public class Transaction {
     public long xid;
     /**
-     * 0：读未提交
-     * 可重复读
-     * 读提交
+     * 0：读提交 RC
+     * 1：可重复读 RR
      */
     public int level;                      // 隔离级别
     public Map<Long, Boolean> snapshot;     // 事务创建时的快照 key 是活跃事务的 xid 记录当前事务启动时的活跃事务
