@@ -13,7 +13,7 @@ import java.util.Arrays;
  */
 public class Entry {
     private static final int OF_XMIN = 0;           // 创建数据的事务 ID
-    private static final int OF_XMAX = OF_XMIN + 8;   // 修改数据的事务 ID
+    private static final int OF_XMAX = OF_XMIN + 8;   // 删除数据的事务 ID
     private static final int OF_DATA = OF_XMAX + 8;   // 用户数据起始偏移
 
     private long uid;
@@ -112,7 +112,7 @@ public class Entry {
     }
 
     /**
-     * 获取修改数据的事务 ID
+     * 获取删除数据的事务 ID
      *
      * @return
      */
@@ -127,7 +127,7 @@ public class Entry {
     }
 
     /**
-     * 标记数据被修改
+     * 标记数据被删除
      *
      * @param xid
      */
