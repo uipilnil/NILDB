@@ -116,7 +116,7 @@ public class TransactionManagerImpl implements TransactionManager {
      */
     private void incrXIDCounter() {
         xidCounter++;
-        ByteBuffer buf = ByteBuffer.wrap(Parser.longToByte(xidCounter));
+        ByteBuffer buf = ByteBuffer.wrap(Parser.long2Byte(xidCounter));
         try {
             fc.position(0);
             fc.write(buf);

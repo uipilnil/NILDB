@@ -210,9 +210,9 @@ public class Recover {
      */
     public static byte[] insertLog(long xid, Page pg, byte[] raw) {
         byte[] logTypeRaw = {LOG_TYPE_INSERT};
-        byte[] xidRaw = Parser.longToByte(xid);
-        byte[] pgnoRaw = Parser.intToByte(pg.getPageNumber());
-        byte[] offsetRaw = Parser.shortToByte(PageX.getFSO(pg));
+        byte[] xidRaw = Parser.long2Byte(xid);
+        byte[] pgnoRaw = Parser.int2Byte(pg.getPageNumber());
+        byte[] offsetRaw = Parser.short2Byte(PageX.getFSO(pg));
         return Bytes.concat(logTypeRaw, xidRaw, pgnoRaw, offsetRaw, raw);
     }
 
@@ -268,8 +268,8 @@ public class Recover {
      */
     public static byte[] updateLog(long xid, DataItem di) {
         byte[] logType = {LOG_TYPE_UPDATE};
-        byte[] xidRaw = Parser.longToByte(xid);
-        byte[] uidRaw = Parser.longToByte(di.getUid());
+        byte[] xidRaw = Parser.long2Byte(xid);
+        byte[] uidRaw = Parser.long2Byte(di.getUid());
         byte[] oldRaw = di.getOldRaw();
         SubArray raw = di.getRaw();
         byte[] newRaw = Arrays.copyOfRange(raw.raw, raw.start, raw.end);

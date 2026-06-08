@@ -60,7 +60,7 @@ public class Entry {
      * @return
      */
     public static byte[] wrapEntryRaw(long xid, byte[] data) {
-        byte[] xmin = Parser.longToByte(xid);
+        byte[] xmin = Parser.long2Byte(xid);
         byte[] xmax = new byte[8];
         return Bytes.concat(xmin, xmax, data);
     }
@@ -135,7 +135,7 @@ public class Entry {
         dataItem.before();
         try {
             SubArray sa = dataItem.data();
-            System.arraycopy(Parser.longToByte(xid), 0, sa.raw, sa.start + OF_XMAX, 8);
+            System.arraycopy(Parser.long2Byte(xid), 0, sa.raw, sa.start + OF_XMAX, 8);
         } finally {
             dataItem.after(xid);
         }

@@ -211,8 +211,8 @@ public class LoggerImpl implements Logger {
      * @return
      */
     private byte[] wrapLog(byte[] data) {
-        byte[] checksum = Parser.intToByte(calChecksum(0, data));
-        byte[] size = Parser.intToByte(data.length);
+        byte[] checksum = Parser.int2Byte(calChecksum(0, data));
+        byte[] size = Parser.int2Byte(data.length);
 
         return Bytes.concat(size, checksum, data);
     }
@@ -227,7 +227,7 @@ public class LoggerImpl implements Logger {
 
         try {
             fc.position(0);
-            fc.write(ByteBuffer.wrap(Parser.intToByte(xChecksum)));
+            fc.write(ByteBuffer.wrap(Parser.int2Byte(xChecksum)));
             fc.force(false);
         } catch (IOException e) {
             Panic.panic(e);
