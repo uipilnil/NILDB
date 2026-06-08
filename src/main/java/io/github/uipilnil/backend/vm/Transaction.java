@@ -47,7 +47,7 @@ public class Transaction {
      * @param xid
      * @return
      */
-    public boolean isSnapshot(long xid) {
+    public boolean isInSnapshot(long xid) {
         if (xid == TransactionManagerImpl.SUPER_XID) {
             return false;
         }
