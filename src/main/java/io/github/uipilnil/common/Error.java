@@ -29,6 +29,8 @@ public class Error {
     public static final Exception FieldNotFoundException = new RuntimeException("Field not found!");
     public static final Exception InvalidLogOpException = new RuntimeException("Invalid logic operation!");
     public static final Exception InvalidValuesException = new RuntimeException("Invalid values!");
+    public static final Exception DuplicatedTableException = new RuntimeException("Duplicated table!");
+    public static final Exception TableNotFoundException = new RuntimeException("Table not found!");
 
     // parser
     public static final Exception InvalidCommandException = new RuntimeException("Invalid command!");
