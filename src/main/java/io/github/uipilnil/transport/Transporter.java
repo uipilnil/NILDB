@@ -7,7 +7,7 @@ import java.io.*;
 import java.net.Socket;
 
 /**
- * 网络通信类
+ * 网络通信通道
  */
 public class Transporter {
     private Socket socket;
