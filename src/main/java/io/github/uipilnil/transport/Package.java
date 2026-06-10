@@ -1,7 +1,7 @@
 package io.github.uipilnil.transport;
 
 /**
- * 数据包封装器
+ * 数据包封装类
  */
 public class Package {
     byte[] data;
