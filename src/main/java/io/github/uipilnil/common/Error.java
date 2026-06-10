@@ -25,4 +25,5 @@ public class Error {
 
     // parser
     public static final Exception InvalidCommandException = new RuntimeException("Invalid command!");
+    public static final Exception TableNoIndexException = new RuntimeException("Table has no index!");
 }
