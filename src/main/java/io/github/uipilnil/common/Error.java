@@ -23,6 +23,9 @@ public class Error {
     public static final Exception NullEntryException = new RuntimeException("Null entry!");
     public static final Exception ConcurrentUpdateException = new RuntimeException("Concurrent update issue!");
 
+    // tbm
+    public static final Exception InvalidFieldException = new RuntimeException("Invalid field type!");
+
     // parser
     public static final Exception InvalidCommandException = new RuntimeException("Invalid command!");
     public static final Exception TableNoIndexException = new RuntimeException("Table has no index!");
