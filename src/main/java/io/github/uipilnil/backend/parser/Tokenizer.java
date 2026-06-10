@@ -131,7 +131,7 @@ public class Tokenizer {
             // 字母或数字：进入普通单词解析模式
             return nextTokenState();
         } else {
-            // 非法字符：报错
+            // 非法字符：抛异常
             err = Error.InvalidCommandException;
             throw err;
         }
