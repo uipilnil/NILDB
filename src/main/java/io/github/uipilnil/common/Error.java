@@ -14,6 +14,7 @@ public class Error {
     public static final Exception MemTooSmallException = new RuntimeException("Memory too small!");
     public static final Exception BadLogFileException = new RuntimeException("Bad log file!");
     public static final Exception DataTooLargeException = new RuntimeException("Data too large!");
+    public static final Exception DatabaseBusyException = new RuntimeException("Database is busy!");
 
     // tm
     public static final Exception BadXIDFileException = new RuntimeException("Bad XID file!");
@@ -42,4 +43,7 @@ public class Error {
     // server
     public static final Exception NestedTransactionException = new RuntimeException("Nested transaction not supported!");
     public static final Exception NoTransactionException = new RuntimeException("Not in transaction!");
+
+    // launcher
+    public static final Exception InvalidMemException = new RuntimeException("Invalid memory!");
 }

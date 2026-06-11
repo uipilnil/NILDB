@@ -105,7 +105,7 @@ public class DataManagerImpl extends AbstractCache<DataItem> implements DataMana
             }
         }
         if (pi == null) {
-            throw Error.DataTooLargeException;
+            throw Error.DatabaseBusyException;
         }
 
         Page pg = null;
