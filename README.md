@@ -26,10 +26,6 @@ mvn exec:java -Dexec.mainClass="io.github.uipilnil.client.Launcher"
 
 此时会启动一个交互式命令行，在命令行中输入类 SQL 语句，点击回车会把语句发送到服务器，并输出执行结果。
 
-一个执行示例：
-
-![img.png](img.png)
-
 ## 架构
 
 它的核心架构包括以下几层：
