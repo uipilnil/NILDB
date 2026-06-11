@@ -6,19 +6,13 @@
 
 ## 运行方式
 
-首先执行如下命令，编译源码：
-
-```
-mvn compile
-```
-
-然后执行如下命令以 /tmp/nildb 作为路径创建数据库：
+首先执行如下命令以 /tmp/nildb 作为路径创建数据库：
 
 ```
 mvn exec:java -Dexec.mainClass="io.github.uipilnil.backend.Launcher" -Dexec.args="-create /tmp/nildb"
 ```
 
-接着执行如下命令以默认参数启动数据库服务：
+然后执行如下命令以默认参数启动数据库服务：
 
 ```
 mvn exec:java -Dexec.mainClass="io.github.uipilnil.backend.Launcher" -Dexec.args="-open /tmp/nildb"
@@ -32,7 +26,9 @@ mvn exec:java -Dexec.mainClass="io.github.uipilnil.client.Launcher"
 
 此时会启动一个交互式命令行，在命令行中输入类 SQL 语句，点击回车会把语句发送到服务器，并输出执行结果。
 
+一个执行示例：
 
+![img.png](img.png)
 
 ## 架构
 
@@ -61,4 +57,3 @@ mvn exec:java -Dexec.mainClass="io.github.uipilnil.client.Launcher"
     - **Server**：基于 socket 监听 3307 端口，接收客户端请求并执行 SQL。
     - **Client**：交互式的 shell，连接服务端发送 SQL 并展示结果。
     - **Transport**：自定义传输协议。
-
